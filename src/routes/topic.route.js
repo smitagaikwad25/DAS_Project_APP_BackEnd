@@ -10,6 +10,7 @@ router.post('/', topicValidator, userAuth, topicController.createTopic);
 
 router.get('/', userAuth, topicController.getAllTopics);
 
+router.get('/:id', userAuth, topicController.getTopicById);
 
 
 export default router;

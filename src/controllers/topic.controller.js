@@ -22,3 +22,14 @@ export let getAllTopics = async (req, res) => {
         res.status(500).json({ error: error.message || 'Failed to fetch topics' });
     }
 };
+
+
+export let getTopicById = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const topic = await TopicService.getTopicById(id);
+      res.status(HttpStatus.OK).json(topic);
+    } catch (error) {
+      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: error.message || 'Failed to fetch topic' });
+    }
+  };

@@ -15,3 +15,15 @@ export let getAllTopics = async () => {
         throw new Error('Failed to fetch topics');
     }
 };
+
+export let getTopicById = async (id) => {
+    try {
+      const topic = await Topic.findByPk(id);
+      if (!topic) {
+        throw new Error('Topic not found');
+      }
+      return topic;
+    } catch (error) {
+      throw new Error('Failed to fetch topic');
+    }
+  };
