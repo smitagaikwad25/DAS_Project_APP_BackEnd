@@ -7,3 +7,11 @@ export let createTopic = async (name, description) => {
         throw new Error('Failed to create topic');
     }
 };
+
+export let getAllTopics = async () => {
+    try {
+        return await Topic.findAll();
+    } catch (error) {
+        throw new Error('Failed to fetch topics');
+    }
+};

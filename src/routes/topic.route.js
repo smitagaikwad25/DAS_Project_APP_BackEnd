@@ -8,6 +8,8 @@ const router = express.Router();
 
 router.post('/', topicValidator, userAuth, topicController.createTopic);
 
-router.get('/', userAuth, topicController.createTopic);
+router.get('/', userAuth, topicController.getAllTopics);
+
+
 
 export default router;
