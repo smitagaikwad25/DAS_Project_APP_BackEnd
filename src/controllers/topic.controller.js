@@ -43,3 +43,13 @@ export let updateTopic = async (req, res) => {
       res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: error.message || 'Failed to update topic' });
     }
   };
+
+export let deleteTopic = async (req, res) => {
+    try {
+      const { id } = req.params;
+      await TopicService.deleteTopic(id);
+      res.status(HttpStatus.OK).json({ message: 'Topic deleted successfully' });
+    } catch (error) {
+      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: error.message || 'Failed to delete topic' });
+    }
+  };

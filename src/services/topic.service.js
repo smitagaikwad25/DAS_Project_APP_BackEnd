@@ -40,3 +40,16 @@ export let updateTopic = async (id, name, description) => {
         throw new Error('Failed to update topic');
     }
 };
+
+export let deleteTopic = async (id) => {
+    try {
+        const topic = await Topic.findByPk(id);
+        if (!topic) {
+            throw new Error('Topic not found');
+        }
+        await topic.destroy();
+        return topic;
+    } catch (error) {
+        throw new Error('Failed to delete topic');
+    }
+};

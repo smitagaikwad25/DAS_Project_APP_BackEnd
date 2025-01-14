@@ -14,6 +14,6 @@ router.get('/:id', userAuth, topicController.getTopicById);
 
 router.put('/:id', userAuth, topicController.updateTopic);
 
-
+router.delete('/:id', userAuth, topicController.deleteTopic);
 
 export default router;
