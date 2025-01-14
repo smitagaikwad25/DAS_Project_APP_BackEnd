@@ -12,5 +12,8 @@ router.get('/', userAuth, topicController.getAllTopics);
 
 router.get('/:id', userAuth, topicController.getTopicById);
 
+router.put('/:id', userAuth, topicController.updateTopic);
+
+
 
 export default router;

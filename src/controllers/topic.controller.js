@@ -23,7 +23,6 @@ export let getAllTopics = async (req, res) => {
     }
 };
 
-
 export let getTopicById = async (req, res) => {
     try {
       const { id } = req.params;
@@ -31,5 +30,16 @@ export let getTopicById = async (req, res) => {
       res.status(HttpStatus.OK).json(topic);
     } catch (error) {
       res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: error.message || 'Failed to fetch topic' });
+    }
+  };
+
+export let updateTopic = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { name, description } = req.body;
+      const topic = await TopicService.updateTopic(id, name, description);
+      res.status(HttpStatus.ACCEPTED).json({ message: 'Topic updated successfully', topic });
+    } catch (error) {
+      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: error.message || 'Failed to update topic' });
     }
   };

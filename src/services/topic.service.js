@@ -18,12 +18,25 @@ export let getAllTopics = async () => {
 
 export let getTopicById = async (id) => {
     try {
-      const topic = await Topic.findByPk(id);
-      if (!topic) {
-        throw new Error('Topic not found');
-      }
-      return topic;
+        const topic = await Topic.findByPk(id);
+        if (!topic) {
+            throw new Error('Topic not found');
+        }
+        return topic;
     } catch (error) {
-      throw new Error('Failed to fetch topic');
+        throw new Error('Failed to fetch topic');
     }
-  };
+};
+
+export let updateTopic = async (id, name, description) => {
+    try {
+        const topic = await Topic.findByPk(id);
+        if (!topic) {
+            throw new Error('Topic not found');
+        }
+        await topic.update({ name, description });
+        return topic;
+    } catch (error) {
+        throw new Error('Failed to update topic');
+    }
+};
