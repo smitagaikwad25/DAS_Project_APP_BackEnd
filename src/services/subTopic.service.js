@@ -20,3 +20,19 @@ export let createSubtopic = async (topicId, data) => {
 export let getSubtopicsByTopicId = async (topicId) => {
     return Subtopic.findAll({ where: { topicId } });
   };
+
+ export let getSubtopicById = async (id) => {
+    const subtopic = await Subtopic.findByPk(id, {
+      include: {
+        model: Topic,
+        attributes: ['name'],
+      },
+    });
+  
+    if (!subtopic) {
+      throw new Error('Subtopic not found');
+    }
+  
+    return subtopic;
+  };
+  

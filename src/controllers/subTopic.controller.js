@@ -19,4 +19,14 @@ export let getAllSubtopics = async (req, res) => {
       res.status(HttpStatus.BAD_GATEWAY).json({ error: error.message || 'Failed to fetch subtopic' });
     }
   };
+
+  export let getSubtopicById = async (req, res) => {
+    try {
+      const {subtopicid} = req.params;
+      const subtopic = await subTopicService.getSubtopicById(subtopicid);
+      res.status(200).json(subtopic);
+    } catch (error) {
+      res.status(400).json({ error: error.message || 'Failed to fetch subtopic' });
+    }
+  };
   

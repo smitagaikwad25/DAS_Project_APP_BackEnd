@@ -8,6 +8,9 @@ const router = express.Router();
 
 router.post('/:topicid', validateSubtopic, userAuth, subtopicController.createSubtopic);
 
-router.get('/:topicid', userAuth, subtopicController.getAllSubtopics)
+router.get('/:topicid', userAuth, subtopicController.getAllSubtopics);
+
+router.get('/:subtopicid', userAuth, subtopicController.getSubtopicById);
+
 
 export default router;
