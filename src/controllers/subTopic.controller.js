@@ -3,6 +3,9 @@ import * as subTopicService from '../services/subTopic.service';
 
 export let createSubtopic = async (req, res) => {
     try {
+        if (req.body.role === 'Admin') {
+            res.status(HttpStatus.UNAUTHORIZED).json({ error: error.message });
+        }
         const subtopic = await subTopicService.createSubtopic(req.params.topicid, req.body);
         res.status(HttpStatus.OK).json(subtopic);
     } catch (error) {
@@ -32,6 +35,9 @@ export let getSubtopicById = async (req, res) => {
 
 export let updateSubtopic = async (req, res) => {
     try {
+        if (req.body.role === 'Admin') {
+            res.status(HttpStatus.UNAUTHORIZED).json({ error: error.message });
+        }
         const { subtopicid } = req.params;
         const subtopic = await subTopicService.updateSubtopic(subtopicid, req.body);
         res.status(HttpStatus.OK).json({ message: 'Subtopic updated successfully', subtopic });
@@ -42,6 +48,9 @@ export let updateSubtopic = async (req, res) => {
 
 export let deleteSubtopic = async (req, res) => {
     try {
+        if (req.body.role === 'Admin') {
+            res.status(HttpStatus.UNAUTHORIZED).json({ error: error.message });
+        }
         const { subtopicid } = req.params;
         await subTopicService.deleteSubtopic(subtopicid);
         res.status(HttpStatus.OK).json({ message: 'Subtopic deleted successfully' });
@@ -52,6 +61,9 @@ export let deleteSubtopic = async (req, res) => {
 
 export let isActiceSubtopic = async (req, res) => {
     try {
+        if (req.body.role === 'Admin') {
+            res.status(HttpStatus.UNAUTHORIZED).json({ error: error.message });
+        }
         const { subtopicid } = req.params;
         await subTopicService.isActiceSubtopic(subtopicid);
         res.status(HttpStatus.OK).json({ message: 'Subtopic status changed successfully' });
