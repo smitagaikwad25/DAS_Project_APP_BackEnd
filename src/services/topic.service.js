@@ -16,9 +16,9 @@ export let getAllTopics = async () => {
     }
 };
 
-export let getTopicById = async (id) => {
+export let getTopicById = async (topicId) => {
     try {
-        const topic = await Topic.findByPk(id);
+        const topic = await Topic.findByPk(topicId);
         if (!topic) {
             throw new Error('Topic not found');
         }
@@ -28,9 +28,9 @@ export let getTopicById = async (id) => {
     }
 };
 
-export let updateTopic = async (id, name, description) => {
+export let updateTopic = async (topicId, name, description) => {
     try {
-        const topic = await Topic.findByPk(id);
+        const topic = await Topic.findByPk(topicId);
         if (!topic) {
             throw new Error('Topic not found');
         }
@@ -41,9 +41,9 @@ export let updateTopic = async (id, name, description) => {
     }
 };
 
-export let deleteTopic = async (id) => {
+export let deleteTopic = async (topicId) => {
     try {
-        const topic = await Topic.findByPk(id);
+        const topic = await Topic.findByPk(topicId);
         if (!topic) {
             throw new Error('Topic not found');
         }

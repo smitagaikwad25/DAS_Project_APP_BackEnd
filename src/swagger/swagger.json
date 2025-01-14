@@ -117,8 +117,128 @@
             "JWT": []
           }
         ]
-        }
+        },
+        "get": {
+            "tags": ["Topic"],
+            "summary": "Get all Topic",
+            "produces": [],
+            "parameters": [
+              {
+                "name": "Get topics",
+                "description": "Get all Topics",
+                "required": false
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Topic fetched successfully"
+              },
+              "500": {
+                "description": "Internal server error"
+              }
+            },
+            "security": [
+              {
+                "JWT": []
+              }
+            ]
+          }
+      },
+      "/topics/{id}": {
+      "get": {
+        "tags": ["Topic"],
+        "summary": "Get topic",
+        "produces": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Topic fetched successfully"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      },
+      "put": {
+        "tags": ["Topic"],
+        "summary": "Update topic deatils",
+        "produces": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "update note",
+            "in": "body",
+            "description": "update note",
+            "required": false,
+            "type": "string",
+            "schema": {
+              "$ref": "#/definitions/Topic"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "note updated succesfully"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["Topic"],
+        "summary": "Delete topic",
+        "produces": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "delete a topic",
+            "description": "delete a topic",
+            "required": false
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Note deleted succesfully"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
       }
+    }
 },
 "securityDefinitions": {
       "JWT": {
