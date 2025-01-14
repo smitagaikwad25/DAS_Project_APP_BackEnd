@@ -14,6 +14,8 @@ router.get('/:subtopicid', userAuth, subtopicController.getSubtopicById);
 
 router.put('/:subtopicid', subtopicController.updateSubtopic);
 
+router.put('/:subtopicid/isactive', subtopicController.isActiceSubtopic);
+
 router.delete('/:subtopicid', subtopicController.deleteSubtopic);
 
 

@@ -40,12 +40,22 @@ export let updateSubtopic = async (req, res) => {
     }
 };
 
-exports.deleteSubtopic = async (req, res) => {
+export let deleteSubtopic = async (req, res) => {
     try {
         const { subtopicid } = req.params;
         await subTopicService.deleteSubtopic(subtopicid);
         res.status(HttpStatus.OK).json({ message: 'Subtopic deleted successfully' });
     } catch (error) {
         res.status(HttpStatus.BAD_REQUEST).json({ error: error.message || 'Failed to delete subtopic' });
+    }
+};
+
+export let isActiceSubtopic = async (req, res) => {
+    try {
+        const { subtopicid } = req.params;
+        await subTopicService.isActiceSubtopic(subtopicid);
+        res.status(HttpStatus.OK).json({ message: 'Subtopic status changed successfully' });
+    } catch (error) {
+        res.status(HttpStatus.BAD_REQUEST).json({ error: error.message || ' Operation failed' });
     }
 };
