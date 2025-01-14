@@ -35,3 +35,17 @@ export const adminRegistration = async (req, res) => {
     });
   }
 };
+
+export const login = async (req, res ) => {
+  try {
+    const { email, password } = req.body;
+    const result = await UserService.login(email, password);
+    if (result.error) {
+      return res.status(HttpStatus.NOT_FOUND).json({ message: result.error });
+    }
+    return res.status(HttpStatus.ACCEPTED).json(result);
+  } catch (error) {
+    return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ message: "Something went wrong", error });
+  }
+
+}
