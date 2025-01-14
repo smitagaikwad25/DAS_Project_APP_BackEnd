@@ -1,8 +1,13 @@
-const { DataTypes } = require('sequelize');
-import sequelize from '../config/database'; // Assuming db.js exports the Sequelize instance
-import { Topic } from './topic';
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/database'; 
+import { Topic } from './topic'; 
 
 const Subtopic = sequelize.define('Subtopic', {
+  subTopicId: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
   subTopic_Name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -27,7 +32,7 @@ const Subtopic = sequelize.define('Subtopic', {
     type: DataTypes.INTEGER,
     references: {
       model: Topic,
-      key: 'id',
+      key: 'topicId', 
     },
     allowNull: false,
   },
@@ -36,4 +41,4 @@ const Subtopic = sequelize.define('Subtopic', {
 Topic.hasMany(Subtopic, { foreignKey: 'topicId', onDelete: 'CASCADE' });
 Subtopic.belongsTo(Topic, { foreignKey: 'topicId' });
 
-module.exports = Subtopic;
+export { Subtopic };
