@@ -15,7 +15,7 @@ export let getAllTopics = async () => {
         return await Topic.findAll({
             include: {
                 model: Subtopic,
-                attributes: ['SubTopic_Name'],
+                attributes: ['SubTopic_Name', 'program', 'youtubeLink','leetcodeLink', 'articleLink'],
             }
         })
     } catch (error) {
