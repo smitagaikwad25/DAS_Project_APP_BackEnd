@@ -3,7 +3,7 @@
     "info": {
       "version": "V1",
       "title": "DSA App",
-      "description": "It will hepl to learn DSA"
+      "description": "It will help to learn DSA"
     },
     "host": "localhost:3000",
     "basePath": "/api/v1/",
