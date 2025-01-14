@@ -19,20 +19,45 @@ export let createSubtopic = async (topicId, data) => {
 
 export let getSubtopicsByTopicId = async (topicId) => {
     return Subtopic.findAll({ where: { topicId } });
-  };
+};
 
- export let getSubtopicById = async (id) => {
+export let getSubtopicById = async (id) => {
     const subtopic = await Subtopic.findByPk(id, {
-      include: {
-        model: Topic,
-        attributes: ['name'],
-      },
+        include: {
+            model: Topic,
+            attributes: ['name'],
+        },
     });
+
+    if (!subtopic) {
+        throw new Error('Subtopic not found');
+    }
+    return subtopic;
+};
+
+export let updateSubtopic = async (id, data) => {
+    const subtopic = await Subtopic.findByPk(id);
+
+    if (!subtopic) {
+        throw new Error('Subtopic not found');
+    }
+    subtopic.subTopic_Name = subtopic.subTopic_Name || data.subTopic_Name,
+    subtopic.program = subtopic.program || data.program,
+    subtopic.youtubeLink = subtopic.youtubeLink || data.youtubeLink,
+    subtopic.leetcodeLink = subtopic.leetcodeLink || data.leetcodeLink,
+    subtopic.articleLink = subtopic.articleLink || data.articleLink,
+    
+    await subtopic.save();
+    return subtopic;
+};
+
+
+export let deleteSubtopic = async (id) => {
+    const subtopic = await Subtopic.findByPk(id);
   
     if (!subtopic) {
       throw new Error('Subtopic not found');
     }
   
-    return subtopic;
+    await subtopic.destroy();
   };
-  

@@ -6,11 +6,15 @@ import {userAuth} from '../middlewares/auth.middleware'
 
 const router = express.Router();
 
-router.post('/:topicid', validateSubtopic, userAuth, subtopicController.createSubtopic);
+router.post('/topic/:topicid', validateSubtopic, userAuth, subtopicController.createSubtopic);
 
-router.get('/:topicid', userAuth, subtopicController.getAllSubtopics);
+router.get('/topic/:topicid', userAuth, subtopicController.getAllSubtopics);
 
 router.get('/:subtopicid', userAuth, subtopicController.getSubtopicById);
+
+router.put('/:subtopicid', subtopicController.updateSubtopic);
+
+router.delete('/:subtopicid', subtopicController.deleteSubtopic);
 
 
 export default router;
