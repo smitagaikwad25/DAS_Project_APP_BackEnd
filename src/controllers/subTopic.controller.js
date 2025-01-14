@@ -13,7 +13,7 @@ export let createSubtopic = async (req, res) => {
 export let getAllSubtopics = async (req, res) => {
     try {
       const { topicid } = req.params;
-      const subtopic = await subTopicService.getSubtopicById(topicid);
+      const subtopic = await subTopicService.getSubtopicsByTopicId(topicid);
       res.status(HttpStatus.OK).json(subtopic);
     } catch (error) {
       res.status(HttpStatus.BAD_GATEWAY).json({ error: error.message || 'Failed to fetch subtopic' });
