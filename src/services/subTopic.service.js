@@ -64,13 +64,11 @@ export let deleteSubtopic = async (id) => {
 
 export let isActiceSubtopic = async (id) => {
     const subtopic = await Subtopic.findByPk(id);
-
+  
     if (!subtopic) {
-        throw new Error('Subtopic not found');
+      throw new Error('Subtopic not found');
     }
-    if (Subtopic) {
-        Subtopic.is_Active = !Subtopic.is_Active;
-        await Subtopic.save();
-    }
-
-};
+    subtopic.isActive = !subtopic.isActive;
+    await subtopic.save();
+  };
+  

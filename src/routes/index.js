@@ -15,7 +15,7 @@ const routes = () => {
   });
   router.use('/users', userRoute);
   router.use('/topics', topic);
-  router.use('/subtopic', subtopics);
+  router.use('/subtopics', subtopics);
   return router;
 };
 

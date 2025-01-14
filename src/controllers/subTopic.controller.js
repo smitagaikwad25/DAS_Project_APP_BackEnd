@@ -3,7 +3,7 @@ import * as subTopicService from '../services/subTopic.service';
 
 export let createSubtopic = async (req, res) => {
     try {
-        if (req.body.role === 'Admin') {
+        if (req.body.role != 'Admin') {
             res.status(HttpStatus.UNAUTHORIZED).json({ error: error.message });
         }
         const subtopic = await subTopicService.createSubtopic(req.params.topicid, req.body);
@@ -35,7 +35,7 @@ export let getSubtopicById = async (req, res) => {
 
 export let updateSubtopic = async (req, res) => {
     try {
-        if (req.body.role === 'Admin') {
+        if (req.body.role != 'Admin') {
             res.status(HttpStatus.UNAUTHORIZED).json({ error: error.message });
         }
         const { subtopicid } = req.params;
@@ -48,7 +48,7 @@ export let updateSubtopic = async (req, res) => {
 
 export let deleteSubtopic = async (req, res) => {
     try {
-        if (req.body.role === 'Admin') {
+        if (req.body.role != 'Admin') {
             res.status(HttpStatus.UNAUTHORIZED).json({ error: error.message });
         }
         const { subtopicid } = req.params;
@@ -61,7 +61,7 @@ export let deleteSubtopic = async (req, res) => {
 
 export let isActiceSubtopic = async (req, res) => {
     try {
-        if (req.body.role === 'Admin') {
+        if (req.body.role != 'Admin') {
             res.status(HttpStatus.UNAUTHORIZED).json({ error: error.message });
         }
         const { subtopicid } = req.params;

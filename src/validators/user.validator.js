@@ -59,14 +59,8 @@ const subtopicSchema = Joi.object({
   }),
   articleLink: Joi.string().uri().allow(null, '').messages({
     'string.uri': 'Article link must be a valid URL',
-  }),
-  isActive: Joi.boolean().required().messages({
-    'boolean.base': 'isActive must be a boolean value',
-  }),
-  topicId: Joi.number().integer().required().messages({
-    'number.base': 'Topic ID must be a number',
-    'any.required': 'Topic ID is required',
-  }),
+  })
+ 
 });
 
 // Middleware to validate requests

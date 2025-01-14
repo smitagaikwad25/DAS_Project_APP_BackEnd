@@ -1,3 +1,5 @@
+import { where } from "sequelize";
+import { Subtopic } from "../models/subTopic";
 import { Topic } from "../models/topic";
 
 export let createTopic = async (name, description) => {
@@ -10,7 +12,7 @@ export let createTopic = async (name, description) => {
 
 export let getAllTopics = async () => {
     try {
-        return await Topic.findAll();
+        return await Topic.findAll()
     } catch (error) {
         throw new Error('Failed to fetch topics');
     }
