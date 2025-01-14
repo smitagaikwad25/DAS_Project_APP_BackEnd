@@ -12,7 +12,12 @@ export let createTopic = async (name, description) => {
 
 export let getAllTopics = async () => {
     try {
-        return await Topic.findAll()
+        return await Topic.findAll({
+            include: {
+                model: Subtopic,
+                attributes: ['SubTopic_Name'],
+            }
+        })
     } catch (error) {
         throw new Error('Failed to fetch topics');
     }

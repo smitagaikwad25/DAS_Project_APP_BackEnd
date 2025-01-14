@@ -16,7 +16,9 @@ export let createTopic = async (req, res) => {
 
 export let getAllTopics = async (req, res) => {
     try {
-        const topics = await TopicService.getAllTopics();
+        const topics = await TopicService.getAllTopics({
+            
+        });
         res.status(200).json(topics);
     } catch (error) {
         res.status(500).json({ error: error.message || 'Failed to fetch topics' });

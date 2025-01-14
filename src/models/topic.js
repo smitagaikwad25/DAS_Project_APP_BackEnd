@@ -21,7 +21,7 @@ const Topic = sequelize.define('Topic', {
     timestamps: true,
 });
 
-Topic.hasMany(Subtopic, { foreignKey: 'topicId', onDelete: 'CASCADE' });
-Subtopic.belongsTo(Topic, { foreignKey: 'topicId' });
+// Topic.hasMany(Subtopic, { foreignKey: 'topicId', onDelete: 'CASCADE' });
+// Subtopic.belongsTo(Topic, { foreignKey: 'topicId' });
 
 export { Topic };
