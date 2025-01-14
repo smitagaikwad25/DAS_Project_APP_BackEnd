@@ -3,7 +3,10 @@ import * as TopicService from '../services/topic.service';
 
 export let createTopic = async (req, res) => {
     try {
-      const { name, description } = req.body;
+      const { name, description,role } = req.body;
+      if(role === 'Admin'){
+        res.status(HttpStatus.UNAUTHORIZED).json({ error: error.message});
+      }
       const topic = await TopicService.createTopic(name, description);
       res.status(HttpStatus.ACCEPTED).json(topic);
     } catch (error) {
