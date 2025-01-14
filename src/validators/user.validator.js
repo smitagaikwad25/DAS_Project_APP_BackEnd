@@ -70,7 +70,7 @@ const subtopicSchema = Joi.object({
 });
 
 // Middleware to validate requests
-const validateSubtopic = (req, res, next) => {
+ export const validateSubtopic = (req, res, next) => {
   const { error } = subtopicSchema.validate(req.body, { abortEarly: false });
   if (error) {
     return res.status(400).json({ errors: error.details.map(err => err.message) });

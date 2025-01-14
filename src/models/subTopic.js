@@ -27,18 +27,11 @@ const Subtopic = sequelize.define('Subtopic', {
   isActive: {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
-  },
-  topicId: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Topic,
-      key: 'topicId', 
-    },
-    allowNull: false,
-  },
+  }
+  
 });
 
-Topic.hasMany(Subtopic, { foreignKey: 'topicId', onDelete: 'CASCADE' });
-Subtopic.belongsTo(Topic, { foreignKey: 'topicId' });
+// Topic.hasMany(Subtopic, { foreignKey: 'topicId', onDelete: 'CASCADE' });
+// Subtopic.belongsTo(Topic, { foreignKey: 'topicId' });
 
 export { Subtopic };

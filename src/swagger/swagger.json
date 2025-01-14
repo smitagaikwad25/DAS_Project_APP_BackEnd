@@ -1,292 +1,542 @@
 {
     "swagger": "2.0",
     "info": {
-      "version": "V1",
-      "title": "DSA App",
-      "description": "It will help to learn DSA"
+        "version": "V1",
+        "title": "DSA App",
+        "description": "It will help to learn DSA"
     },
     "host": "localhost:3000",
     "basePath": "/api/v1/",
-    "schemes": ["http"],
-    "consumes": ["application/json"],
-    "produces": ["application/json"],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
     "paths": {
-      "/users": {
-        "post": {
-          "tags": ["User"],
-          "description": "Register user...",
-          "parameters": [
-            {
-              "name": "Register new name",
-              "in": "body",
-              "description": "Register user",
-              "schema": {
-                "$ref": "#/definitions/User"
-              }
+        "/users": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Register user...",
+                "parameters": [
+                    {
+                        "name": "Register new name",
+                        "in": "body",
+                        "description": "Register user",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "User created successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
             }
-          ],
-          "produces": ["application/json"],
-          "responses": {
-            "201": {
-              "description": "User created successfully"
+        },
+        "/users/admin": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Admin register user...",
+                "parameters": [
+                    {
+                        "name": "Register new name",
+                        "in": "body",
+                        "description": "Register user",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Admin added successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "User login",
+                "parameters": [
+                    {
+                        "name": "login user",
+                        "in": "body",
+                        "description": "User login",
+                        "schema": {
+                            "$ref": "#/definitions/login"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "sucessfully logged in"
+                    },
+                    "404": {
+                        "description": "email or password doesn't match"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/topics": {
+            "post": {
+                "tags": [
+                    "Topic"
+                ],
+                "description": "Add new topic...",
+                "parameters": [
+                    {
+                        "name": "Topic...",
+                        "in": "body",
+                        "description": "New toipc",
+                        "schema": {
+                            "$ref": "#/definitions/Topic"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Added successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "JWT": []
+                    }
+                ]
             },
-            "500": {
-              "description": "Internal server error"
+            "get": {
+                "tags": [
+                    "Topic"
+                ],
+                "summary": "Get all Topic",
+                "produces": [],
+                "parameters": [
+                    {
+                        "name": "Get topics",
+                        "description": "Get all Topics",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Topic fetched successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "JWT": []
+                    }
+                ]
             }
-          }
+        },
+        "/topics/{id}": {
+            "get": {
+                "tags": [
+                    "Topic"
+                ],
+                "summary": "Get topic",
+                "produces": [],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Topic fetched successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "JWT": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Topic"
+                ],
+                "summary": "Update topic deatils",
+                "produces": [],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "update note",
+                        "in": "body",
+                        "description": "update note",
+                        "required": false,
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/Topic"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Updated succesfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "JWT": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Topic"
+                ],
+                "summary": "Delete topic",
+                "produces": [],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "delete a topic",
+                        "description": "delete a topic",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "deleted succesfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "JWT": []
+                    }
+                ]
+            }
+        },
+        "/subtopics/{topicid}": {
+            "post": {
+                "tags": [
+                    "Sub_Topic"
+                ],
+                "description": "Add new subtopic...",
+                "parameters": [
+                    {
+                        "name": "topicid",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Topic...",
+                        "in": "body",
+                        "description": "New toipc",
+                        "schema": {
+                            "$ref": "#/definitions/SubTopic"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Added successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "JWT": []
+                    }
+                ]
+            },
+            "get": {
+                "tags": [
+                    "Sub_Topic"
+                ],
+                "summary": "Get sub topic",
+                "produces": [],
+                "parameters": [
+                    {
+                        "name": "topicid",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "SubTopic fetched successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "JWT": []
+                    }
+                ]
+            }
+        },
+        "/subtopics/{subtopicid}": {
+            "put": {
+                "tags": [
+                    "Sub_Topic"
+                ],
+                "summary": "Update subtopic deatils",
+                "produces": [],
+                "parameters": [
+                    {
+                        "name": "subtopicid",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "update note",
+                        "in": "body",
+                        "description": "update note",
+                        "required": false,
+                        "type": "string",
+                        "schema": {
+                            "$ref": "#/definitions/SubTopic"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "updated succesfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "JWT": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Sub_Topic"
+                ],
+                "summary": "Delete sub topic",
+                "produces": [],
+                "parameters": [
+                    {
+                        "name": "subtopicid",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "delete a sub topic",
+                        "description": "delete a sub topic",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Deleted succesfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "JWT": []
+                    }
+                ]
+            }
+        },
+        "/subtopics/{subtopicid}/isactive": {
+            "put": {
+                "tags": [
+                    "Sub_Topic"
+                ],
+                "summary": "Update subtopic status",
+                "produces": [],
+                "parameters": [
+                    {
+                        "name": "subtopicid",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "updated succesfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "JWT": []
+                    }
+                ]
+            }
+        },
+        "/subtopics/{subtopicid}/getsubtopic": {
+            "get": {
+                "tags": [
+                    "Sub_Topic"
+                ],
+                "summary": "Get sub topic deatils",
+                "produces": [],
+                "parameters": [
+                    {
+                        "name": "subtopicid",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "SubTopic fetched successfully"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [
+                    {
+                        "JWT": []
+                    }
+                ]
+            }
         }
-      },
-      "/users/admin": {
-        "post": {
-          "tags": ["User"],
-          "description": "Admin register user...",
-          "parameters": [
-            {
-              "name": "Register new name",
-              "in": "body",
-              "description": "Register user",
-              "schema": {
-                "$ref": "#/definitions/User"
-              }
-            }
-          ],
-          "produces": ["application/json"],
-          "responses": {
-            "201": {
-              "description": "Admin added successfully"
-            },
-            "500": {
-              "description": "Internal server error"
-            }
-          }
+    },
+    "securityDefinitions": {
+        "JWT": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
         }
-      },
-      "/users/login": {
-        "post": {
-          "tags": ["User"],
-          "description": "User login",
-          "parameters": [
-            {
-              "name": "login user",
-              "in": "body",
-              "description": "User login",
-              "schema": {
-                "$ref": "#/definitions/login"
-              }
-            }
-          ],
-          "produces": ["application/json"],
-          "responses": {
-            "201": {
-              "description": "sucessfully logged in"
-            },
-            "404": {
-              "description": "email or password doesn't match"
-            },
-            "500": {
-              "description": "Internal server error"
-            }
-          }
-        }
-      },
-      "/topics": {
-        "post": {
-          "tags": ["Topic"],
-          "description": "Add new topic...",
-          "parameters": [
-            {
-              "name": "Topic...",
-              "in": "body",
-              "description": "New toipc",
-              "schema": {
-                "$ref": "#/definitions/Topic"
-              }
-            }
-          ],
-          "produces": ["application/json"],
-          "responses": {
-            "201": {
-              "description": "Added successfully"
-            },
-            "500": {
-              "description": "Internal server error"
-            }
-          },
-          "security": [
-          {
-            "JWT": []
-          }
-        ]
-        },
-        "get": {
-            "tags": ["Topic"],
-            "summary": "Get all Topic",
-            "produces": [],
-            "parameters": [
-              {
-                "name": "Get topics",
-                "description": "Get all Topics",
-                "required": false
-              }
-            ],
-            "responses": {
-              "200": {
-                "description": "Topic fetched successfully"
-              },
-              "500": {
-                "description": "Internal server error"
-              }
-            },
-            "security": [
-              {
-                "JWT": []
-              }
-            ]
-          }
-      },
-      "/topics/{id}": {
-      "get": {
-        "tags": ["Topic"],
-        "summary": "Get topic",
-        "produces": [],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Topic fetched successfully"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        },
-        "security": [
-          {
-            "JWT": []
-          }
-        ]
-      },
-      "put": {
-        "tags": ["Topic"],
-        "summary": "Update topic deatils",
-        "produces": [],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "update note",
-            "in": "body",
-            "description": "update note",
-            "required": false,
-            "type": "string",
-            "schema": {
-              "$ref": "#/definitions/Topic"
-            }
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "note updated succesfully"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        },
-        "security": [
-          {
-            "JWT": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": ["Topic"],
-        "summary": "Delete topic",
-        "produces": [],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "delete a topic",
-            "description": "delete a topic",
-            "required": false
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "Note deleted succesfully"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        },
-        "security": [
-          {
-            "JWT": []
-          }
-        ]
-      }
-    }
-},
-"securityDefinitions": {
-      "JWT": {
-        "type": "apiKey",
-        "name": "Authorization",
-        "in": "header"
-      }
     },
     "definitions": {
-      "User": {
-        "type": "object",
-        "properties": {
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          }
+        "User": {
+            "type": "object",
+            "properties": {
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "login": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "Topic": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        },
+        "SubTopic": {
+            "type": "object",
+            "properties": {
+                "subTopic_Name": {
+                    "type": "string"
+                },
+                "program": {
+                    "type": "string"
+                },
+                "youtubeLink": {
+                    "type": "string"
+                },
+                "leetcodeLink": {
+                    "type": "string"
+                },
+                "articleLink": {
+                    "type": "string"
+                }
+            }
         }
-      },
-      "login": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          }
-        }
-      },
-      "Topic": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          }
-        }
-      }
     }
-  }
-  
+}

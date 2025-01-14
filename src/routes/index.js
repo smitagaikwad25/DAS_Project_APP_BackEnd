@@ -3,6 +3,7 @@ const router = express.Router();
 
 import userRoute from './user.route';
 import topic from './topic.route'
+import subtopics from './subTopic'
 /**
  * Function contains Application routes
  *
@@ -14,6 +15,7 @@ const routes = () => {
   });
   router.use('/users', userRoute);
   router.use('/topics', topic);
+  router.use('/subtopic', subtopics);
   return router;
 };
 

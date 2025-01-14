@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 import sequelize from '../config/database';
+import { Subtopic } from './subTopic';
 
 const Topic = sequelize.define('Topic', {
     topicId: {
@@ -19,5 +20,8 @@ const Topic = sequelize.define('Topic', {
     tableName: 'topics',
     timestamps: true,
 });
+
+Topic.hasMany(Subtopic, { foreignKey: 'topicId', onDelete: 'CASCADE' });
+Subtopic.belongsTo(Topic, { foreignKey: 'topicId' });
 
 export { Topic };
