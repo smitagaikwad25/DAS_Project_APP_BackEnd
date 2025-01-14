@@ -6,7 +6,8 @@ import {userAuth} from '../middlewares/auth.middleware'
 
 const router = express.Router();
 
-router.post('/:topicid', validateSubtopic, userAuth, subtopicController.createSubtopic)
-router.get('/:topicid', userAuth, subtopicController.createSubtopic)
+router.post('/:topicid', validateSubtopic, userAuth, subtopicController.createSubtopic);
+
+router.get('/:topicid', userAuth, subtopicController.getAllSubtopics)
 
 export default router;

@@ -16,3 +16,7 @@ export let createSubtopic = async (topicId, data) => {
     })
     return subtopic;
 };
+
+export let getSubtopicsByTopicId = async (topicId) => {
+    return Subtopic.findAll({ where: { topicId } });
+  };
