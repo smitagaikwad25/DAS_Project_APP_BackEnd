@@ -88,12 +88,39 @@
             }
           }
         }
+      },
+      "/topics": {
+        "post": {
+          "tags": ["Topic"],
+          "description": "Add new topic...",
+          "parameters": [
+            {
+              "name": "Topic...",
+              "in": "body",
+              "description": "New toipc",
+              "schema": {
+                "$ref": "#/definitions/Topic"
+              }
+            }
+          ],
+          "produces": ["application/json"],
+          "responses": {
+            "201": {
+              "description": "Added successfully"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          },
+          "security": [
+          {
+            "JWT": []
+          }
+        ]
+        }
       }
-     
-      
 },
-  
-    "securityDefinitions": {
+"securityDefinitions": {
       "JWT": {
         "type": "apiKey",
         "name": "Authorization",
@@ -129,39 +156,14 @@
           }
         }
       },
-      "ForgetPassword": {
+      "Topic": {
         "type": "object",
         "properties": {
-          "email": {
-            "type": "string"
-          }
-        }
-      },
-      "ResetPassword": {
-        "type": "object",
-        "properties": {
-          "password": {
-            "type": "string"
-          }
-        }
-      },
-      "Note": {
-        "type": "object",
-        "properties": {
-          "Title": {
+          "name": {
             "type": "string"
           },
-          "Description": {
+          "description": {
             "type": "string"
-          },
-          "color": {
-            "type": "string"
-          },
-          "isArchieved": {
-            "type": "boolean"
-          },
-          "isDeleted": {
-            "type": "boolean"
           }
         }
       }

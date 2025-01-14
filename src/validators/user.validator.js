@@ -16,13 +16,26 @@ export const newUserValidator = (req, res, next) => {
   }
 };
 
-
 export const loginValidator = (req, res, next) => {
   const schema = Joi.object({
    
     email: Joi.string().email().required(),
     password: Joi.string().required()
   });
+  const { error, value } = schema.validate(req.body);
+  if (error) {
+    next(error);
+  } else {
+  
+    next();
+  }
+};
+
+export const topicValidator = (req, res, next) => {
+  const schema = Joi.object({
+    name: Joi.string().required(),
+    description: Joi.string().required(),
+    });
   const { error, value } = schema.validate(req.body);
   if (error) {
     next(error);
